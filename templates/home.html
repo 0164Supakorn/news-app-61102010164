@@ -1,0 +1,58 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+
+<center>
+<h1><b>WEATHER</b></h1><br>
+
+<form>
+    <input class="form-control  form-control-lg" name="city" type="text" placeholder="Location">
+
+    <br>
+    <button type="submit" value="Submit" class="btn btn-dark btn-lg"> <i class="fa fa-search" aria-hidden="true"></i> <b> Click to Search</b></button>
+    
+</form>
+{% if weather.description == "city not found" %}
+
+<br>
+<h1 style="color: red;"><b>404 city not found</b></h1>
+
+{% else %}
+&nbsp;
+<h3>City: <b>{{weather.city}}, {{weather.country}}</b> &nbsp; Temperature: <b>{{weather.temperature}} &#8451</b></h3> <h3>Description: <b>{{weather.description}}<img src="{{weather.url_icon}}" alt="Weather icon" style="background-color: rgb(40, 120, 241);margin: 20px;"></b></h3><h3>Pressure: <b>{{weather.pressure}} Pascal</b> &nbsp;Humidity: <b>{{weather.humidity}}%</b> &nbsp;Wind: <b>{{weather.wind}} KM/H</b></h3>
+</center>
+
+
+{% endif %}
+<br><hr style="border-top: 3px solid whitesmoke;">
+<h1> <b>5 LASTEST COVID-19 NEWS</b></h1><br>
+
+{% if news == None %}
+
+<br>
+<h1 style="color: red;"><b>404 news not found</b></h1>
+<br>
+{% else %}
+
+{%for i in range(5) %}
+
+
+<div class="jumbotron mt-3 bg-dark shadow-lg">
+    <div class="container">
+        <div style="text-align: left;">
+        <h2 style="text-align: center;"><a href="{{news.urlList[i]}}" target="_blank">{{news.titleList[i]}}</a></b></h2> <br>
+          <img src="{{news.urlToImageList[i]}}" alt="NewsImage" style="width: 100%;">
+        <hr style="border-top: 3px solid whitesmoke;">
+        <p>{{news.descriptionList[i]}} <a href="{{news.urlList[i]}}" target="_blank">Read more</a></p>
+        </div>
+    </div>
+  </div>
+
+{% endfor %}
+
+
+{% endif %}
+
+{% endblock %}
+
+
